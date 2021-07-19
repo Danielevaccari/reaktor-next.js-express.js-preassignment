@@ -24,6 +24,7 @@ export default function Home() {
   return (
     <>
       <div>{strMagic}</div>
+      {console.log('cs')}
     </>
   )
 }
