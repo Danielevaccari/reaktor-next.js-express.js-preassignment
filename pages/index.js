@@ -8,8 +8,8 @@ export default function Home() {
   const [strMagic, setStrMagic] = useState('')
   //chapters contains the chapters from the .txt data
   const [chapters, setChapters] = useState('')
-  //Rules that the user selects by clicking specific chapter
-  const [chapterRules, setChapterRules] = useState([])
+  //Bool fro search
+  const [filter, setFilter] = useState(false)
   //This contains all the rules
   const [allRules, setAllRules] = useState([])
   //Rule identifier
@@ -24,7 +24,7 @@ export default function Home() {
     initializeStrMagic(data)
   }
 
-  //Gets all rules by using regular expressions
+  //Gets all rules from string by using regular expressions
   const setAllRulesArray = () => {
     setAllRules(strMagic.match(/^[0-9][0-9][0-9].[0-9][a-z]?.+(?=\s*$)/gm))
   }
@@ -37,7 +37,6 @@ export default function Home() {
   //Setter
   const changeChapters = () => {
     const chapterArray = strMagic.slice(val, 3833).toString()
-
     setChapters(chapterArray.match(/^[0-9][0-9][0-9]\. .+/gm))
   }
 
@@ -51,6 +50,15 @@ export default function Home() {
 
   const changeSearch = (e) => {
     setSearch(e.target.value)
+    setFilter(true)
+    if (!document.getElementById('searchbox').value) {
+      setFilter(false)
+    }
+    console.log(filter)
+  }
+
+  const resetSearcbox = () => {
+    document.getElementById('searcbox').value = ''
   }
 
   //Iniatializing data as soon as page is opened
@@ -73,7 +81,7 @@ export default function Home() {
       setAllRulesArray()
     }
   }, [strMagic])
-
+  console.log(filter)
   return (
     <>
       <Head>
@@ -87,9 +95,10 @@ export default function Home() {
             <div className={styles.toc}>Table of contents</div>
             <div className={styles.searchboxParent}>
               <input
-              className={styles.searchbox}
+                id='searchbox'
+                className={styles.searchbox}
                 onChange={changeSearch}
-                placeholder='search...'
+                placeholder='search from all rules...'
                 type='text'
               >
               </input>
@@ -100,9 +109,17 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <div className={styles.rules}>Rules {search}<br />
-            {allRules && allRules.map((rule) => (
+          <div className={styles.rules}>
+            <div style={{ fontSize: '30px' }}>
+              Rules
+            </div>
+            {search}
+            <br />
+            {!filter && allRules && allRules.map((rule) => (
               rule.substring(0, 3) == id ? <div className={styles.rule} key={rule}>{rule.toString() + '\n' + '\n'}</div> : ''
+            ))}
+            {filter && allRules && allRules.map((rule) => (
+              rule.includes(search) ? <div className={styles.rule} key={rule}>{rule.toString() + '\n' + '\n'}</div> : ''
             ))}
           </div>
         </div>
