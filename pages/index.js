@@ -26,9 +26,9 @@ export default function Home() {
 
   //Gets all rules from string by using regular expressions
   const setAllRulesArray = () => {
-    setAllRules(strMagic.match(/^[0-9][0-9][0-9].[0-9][a-z]?.+(?=\s*$)/gm))
+    setAllRules(strMagic.match(/^[0-9][0-9][0-9].[0-9][a-z]?.+\s?\s?(Example.*$)?\s?\s?(Example.*$)?\s?\s?(Example.*$)?\s?\s?(Example.*$)?/gm))
   }
-
+  ///^[0-9][0-9][0-9].[0-9][a-z]?.+(?=\s*$)(\sExample.*$)?(\sExample.*$)?/gm
   //Sets .txt data to string
   const initializeStrMagic = (e) => {
     setStrMagic(e)
