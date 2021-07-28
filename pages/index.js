@@ -8,7 +8,7 @@ export default function Home() {
   const [strMagic, setStrMagic] = useState('')
   //chapters contains the chapters from the .txt data
   const [chapters, setChapters] = useState('')
-  //Bool fro search
+  //Bool for search
   const [filter, setFilter] = useState(false)
   //This contains all the rules
   const [allRules, setAllRules] = useState([])
@@ -34,30 +34,24 @@ export default function Home() {
     setStrMagic(e)
   }
 
-  //Setter
+  //Gets the chapters and sets them to chapters. Slices the chapter section from .txt file and collects chapters using regex. Indexes of slicing are found by keywords around all chapters.
   const changeChapters = () => {
-    const chapterArray = strMagic.slice(val, 3833).toString()
+    const chapterArray = strMagic.slice(strMagic.indexOf('Contents'), strMagic.indexOf('Credits')).toString()
     setChapters(chapterArray.match(/^[0-9][0-9][0-9]\. .+/gm))
   }
-
+  
+  //Sets the id to match chapter number
   const changeId = (prop) => {
     setId(prop)
   }
-  //contentindex is equal to the index when the chapters start
-  //const [contentIndex, setContentIndex] = useState(null)
 
-  const val = strMagic.indexOf('Contents') + 8
-
+  //Input handler
   const changeSearch = (e) => {
     setSearch(e.target.value)
     setFilter(true)
     if (!document.getElementById('searchbox').value) {
       setFilter(false)
     }
-  }
-
-  const resetSearcbox = () => {
-    document.getElementById('searcbox').value = ''
   }
 
   //Iniatializing data as soon as page is opened
