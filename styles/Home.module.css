@@ -18,11 +18,21 @@
   flex  : 30%;
 }
 
+.title {
+  height         : 30px;
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+  font-size      : 1.2rem;
+  font-family    : fantasy;
+  margin         : 2%;
+}
+
 .toc {
   display        : flex;
   justify-content: center;
   align-items    : center;
-  font-size      : 1rem;
+  font-size      : 0.8rem;
   font-family    : Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
@@ -35,7 +45,7 @@
 
 .searchbox {
   height: 20px;
-  width: 80px;
+  width : 80px;
   border: none;
 }
 
@@ -77,7 +87,7 @@
     flex: 80%;
   }
 
-  .searchbox{
+  .searchbox {
     width: 150px;
   }
 }

@@ -85,7 +85,8 @@ export default function Home() {
       <div className={styles.walls}>
         <div className={styles.container}>
           <div className={styles.left}><br />
-            <div className={styles.toc}>Table of contents</div>
+          <div className={styles.title}>Magic the Gathering</div>
+            
             <div className={styles.searchboxParent}>
               <input
                 id='searchbox'
@@ -96,6 +97,7 @@ export default function Home() {
               >
               </input>
             </div>
+            <div className={styles.toc}>Table of contents</div>
             <div className={styles.chapters}>
               {chapters && chapters.map((chapter) => (
                 <div className={styles.chapter} onClick={() => changeId(chapter.substring(0, 3))} key={chapter.substring(0, 3)}>{chapter.toString() + '\n' + '\n'}</div>
