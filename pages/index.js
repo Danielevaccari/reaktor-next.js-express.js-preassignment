@@ -13,7 +13,7 @@ export default function Home() {
   //This contains all the rules
   const [allRules, setAllRules] = useState([])
   //Rule identifier
-  const [id, setId] = useState('')
+  const [id, setId] = useState('100')
   //Value of searchbox
   const [search, setSearch] = useState('')
 
@@ -54,7 +54,6 @@ export default function Home() {
     if (!document.getElementById('searchbox').value) {
       setFilter(false)
     }
-    console.log(filter)
   }
 
   const resetSearcbox = () => {
@@ -81,7 +80,7 @@ export default function Home() {
       setAllRulesArray()
     }
   }, [strMagic])
-  console.log(filter)
+
   return (
     <>
       <Head>
