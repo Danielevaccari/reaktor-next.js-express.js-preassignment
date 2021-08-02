@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import PopUpComp from '../components/popUpComp'
+import PopUpComp from '../components/PopUpComp'
 
 //Created by Daniele Johannes Vaccari
 
