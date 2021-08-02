@@ -2,6 +2,8 @@ import React from 'react'
 import Modal from '@material-ui/core/Modal'
 import styles from '../styles/PopUp.module.css'
 
+
+//Pop up component
 const PopUpComp = ({open, ruleHyperClose, hyperRule}) => {
     return (
         <>

@@ -3,7 +3,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import PopUpComp from '../components/popUpComp'
 
-//Created by Daniele Vaccari
+//Created by Daniele Johannes Vaccari
 
 export default function Home() {
 
