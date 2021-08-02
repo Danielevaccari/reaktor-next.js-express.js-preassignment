@@ -77,7 +77,7 @@ export default function Home() {
         var tempAns = tempStr.split(ruleIds[i])
         //Adds whole rule together with one rule hyperlink
         ans.push(tempAns[0])
-        ans.push(<span key={ruleIds[i]} data-value={ruleIds[i]} onClick={ruleHyperOpen} style={{ color: 'royalblue' }}>{ruleIds[i]}</span>)
+        ans.push(<span key={tempAns[0]} data-value={ruleIds[i]} onClick={ruleHyperOpen} style={{ color: 'royalblue' }}>{ruleIds[i]}</span>)
 
         //If contains 1 rule
         if (ruleIds.length == 1) {
