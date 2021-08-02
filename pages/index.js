@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import PopUp from '../components/popUp'
+import PopUpComp from '../components/popUpComp'
 
 //Created by Daniele Vaccari
 
@@ -146,7 +146,7 @@ export default function Home() {
         </title>
       </Head>
       {/* Pop up component */}
-      <PopUp open={open} ruleHyperClose={ruleHyperClose} hyperRule={hyperRule} />
+      <PopUpComp open={open} ruleHyperClose={ruleHyperClose} hyperRule={hyperRule} />
       {/* Rulebook content */}
       <div className={styles.walls}>
         <div className={styles.container}>

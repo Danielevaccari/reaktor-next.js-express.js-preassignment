@@ -2,7 +2,7 @@ import React from 'react'
 import Modal from '@material-ui/core/Modal'
 import styles from '../styles/PopUp.module.css'
 
-const PopUp = ({open, ruleHyperClose, hyperRule}) => {
+const PopUpComp = ({open, ruleHyperClose, hyperRule}) => {
     return (
         <>
             <Modal
@@ -19,4 +19,4 @@ const PopUp = ({open, ruleHyperClose, hyperRule}) => {
     )
 }
 
-export default PopUp
+export default PopUpComp
