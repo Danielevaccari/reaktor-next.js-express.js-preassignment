@@ -1,0 +1,20 @@
+.popUpContainer {
+    height          : 80vh;
+    width           : 65vw;
+    outline         : none;
+    background-color: wheat;
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+  }
+  
+  .popUp {
+    height         : 100%;
+    width          : 100%;
+    overflow       : auto;
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    font-size      : 0.6rem;
+    font-family    : 'Courier New', Courier, monospace;
+  }
