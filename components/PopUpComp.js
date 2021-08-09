@@ -4,11 +4,12 @@ import styles from '../styles/PopUp.module.css'
 
 
 //Pop up component
-const PopUpComp = ({open, ruleHyperClose, hyperRule}) => {
+export const PopUpComp = ({ open, ruleHyperClose, hyperRule }) => {
     return (
         <>
             <Modal
-                open={open}
+                title='modal'
+                open={open ? true : false}
                 onClose={ruleHyperClose}
                 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <div className={styles.popUpContainer}>
@@ -20,5 +21,3 @@ const PopUpComp = ({open, ruleHyperClose, hyperRule}) => {
         </>
     )
 }
-
-export default PopUpComp
