@@ -1,0 +1,1 @@
+export const Plus = (a, b) => <div data-testid='plus'>hey</div>
