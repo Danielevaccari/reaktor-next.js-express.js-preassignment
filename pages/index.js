@@ -26,7 +26,7 @@ export default function Home() {
 
   //Fetch .txt data from backend server at https://newest-react-express.herokuapp.com/ .
   const dataFetch = async () => {
-    const res = await fetch('http://localhost:3000/api/hello')
+    const res = await fetch('https://newest-react-express.herokuapp.com/')
     const data = await res.text()
     initializeStrMagic(data)
   }
