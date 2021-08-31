@@ -55,6 +55,7 @@
   white-space: pre-line;
   font-size  : 10px;
   margin     : 2%;
+  -webkit-font-smoothing: antialiased;
 }
 
 .chapter {
@@ -72,6 +73,7 @@
   font-size    : 0.8rem;
   font-family  : 'Courier New', Courier, monospace;
   overflow     : auto;
+  -webkit-font-smoothing: antialiased;
 }
 
 .rule {
