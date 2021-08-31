@@ -27,8 +27,8 @@ export default function Home() {
   //Fetch .txt data from backend server at https://newest-react-express.herokuapp.com/ .
   const dataFetch = async () => {
 
-    //https://reaktor-next-js-express-js-preassignment.vercel.app/api/hello
-    const res = await fetch('https://newest-react-express.herokuapp.com/')
+    //https://reaktor-next-js-express-js-preassignment.vercel.app/api/ruleData
+    const res = await fetch('https://reaktor-next-js-express-js-preassignment.vercel.app/api/ruleData')
     const data = await res.text()
     initializeStrMagic(data)
   }
