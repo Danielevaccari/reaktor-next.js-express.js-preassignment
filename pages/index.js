@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { PopUpComp } from '../components/PopUpComp'
+import { PopUpComp } from '../components/popUp/PopUpComp'
+import Chapters from '../components/navigation/Chapters'
+import RuleList from '../components/rules/RuleList'
+import Rule from '../components/rules/rule/Rule'
 
 //Created by Daniele Johannes Vaccari
 
@@ -24,7 +27,7 @@ export default function Home() {
   //Boolean for pop up window. Open if true.
   const [open, setOpen] = useState(false)
 
-  //Fetch .txt data from backend server at https://newest-react-express.herokuapp.com/ .
+  //Fetch .txt data at https://reaktor-next-js-express-js-preassignment.vercel.app/api/ruleData.
   const dataFetch = async () => {
 
     //https://reaktor-next-js-express-js-preassignment.vercel.app/api/ruleData
@@ -152,43 +155,8 @@ export default function Home() {
       {/* Rulebook content */}
       <div className={styles.walls}>
         <div className={styles.container}>
-          <div className={styles.left}><br />
-            <div className={styles.title}>Magic the Gathering</div>
-
-            <div className={styles.searchboxParent}>
-              {/* Searchbox for rule filtering */}
-              <input
-                id='searchbox'
-                className={styles.searchbox}
-                onChange={changeSearch}
-                placeholder='search from all rules...'
-                type='text'
-              >
-              </input>
-            </div>
-            <div className={styles.toc}>Table of contents</div>
-            <div className={styles.chapters}>
-              {/* Get chapters dynamically */}
-              {chapters && chapters.map((chapter) => (
-                <div className={styles.chapter} onClick={() => changeId(chapter.substring(0, 3))} key={chapter.substring(0, 3)}>{chapter + '\n' + '\n'}</div>
-              ))}
-            </div>
-          </div>
-          <div className={styles.rules}>
-            <div style={{ fontSize: '30px' }}>
-              Rules
-            </div>
-            {search}
-            <br />
-            {/* This executes when chapters are clicked */}
-            {!filter && allRules && allRules.map((rule) => (
-              rule.substring(0, 3) == id ? <div className={styles.rule} key={rule}>{injectHyperlinkRules(rule)}<br /></div> : ''
-            ))}
-            {/* If user has entered text in the searcbox this will execute */}
-            {filter && allRules && allRules.map((rule) => (
-              rule.includes(search) ? <div className={styles.rule} key={rule}>{injectHyperlinkRules(rule)}<br /></div> : ''
-            ))}
-          </div>
+          <Chapters chapters={chapters} changeSearch={changeSearch} changeId={changeId} />
+          <RuleList search={search} allRules={allRules} filter={filter} id={id} injectHyperlinkRules={injectHyperlinkRules} />
         </div>
       </div>
     </>
