@@ -1,6 +1,6 @@
 .left {
-    height: 100vh;
-    flex  : 30%;
+    height: 90vh;
+    flex  : 35%;
 }
 
 .toc {
@@ -12,8 +12,8 @@
 }
 
 .chapters {
-    height                : 70%;
-    overflow              : auto;
+    height                : 80%;
+    overflow-y            : auto;
     white-space           : pre-line;
     font-size             : 10px;
     margin                : 2%;

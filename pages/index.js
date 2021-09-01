@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css'
 import { PopUpComp } from '../components/popUp/PopUpComp'
 import Chapters from '../components/navigation/Chapters'
 import RuleList from '../components/rules/RuleList'
+import Logo from '../components/navigation/logo/Logo'
 
 //Created by Daniele Johannes Vaccari
 
@@ -30,7 +31,7 @@ export default function Home() {
   const dataFetch = async () => {
 
     //https://reaktor-next-js-express-js-preassignment.vercel.app/api/ruleData
-    const res = await fetch('https://reaktor-next-js-express-js-preassignment.vercel.app/api/ruleData')
+    const res = await fetch('https://newest-react-express.herokuapp.com/')
     const data = await res.text()
     initializeStrMagic(data)
   }
@@ -81,7 +82,7 @@ export default function Home() {
         var tempAns = tempStr.split(ruleIds[i])
         //Adds whole rule together with one rule hyperlink
         ans.push(tempAns[0])
-        ans.push(<span key={tempAns[0]} data-value={ruleIds[i]} onClick={ruleHyperOpen} style={{ color: 'royalblue' }}>{ruleIds[i]}</span>)
+        ans.push(<span key={tempAns[0]} data-value={ruleIds[i]} onClick={ruleHyperOpen} style={{ color: 'blue' }}>{ruleIds[i]}</span>)
 
         //If contains 1 rule
         if (ruleIds.length == 1) {
@@ -153,6 +154,7 @@ export default function Home() {
       <PopUpComp open={open} ruleHyperClose={ruleHyperClose} hyperRule={hyperRule} />
       {/* Rulebook content */}
       <div className={styles.walls}>
+        <Logo />
         <div className={styles.container}>
           <Chapters chapters={chapters} changeSearch={changeSearch} changeId={changeId} />
           <RuleList search={search} allRules={allRules} filter={filter} id={id} injectHyperlinkRules={injectHyperlinkRules} />

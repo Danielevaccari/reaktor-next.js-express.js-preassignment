@@ -1,6 +1,6 @@
 import styles from '../../styles/Chapters.module.css'
 import Searchbox from './searchbox/Searchbox'
-import Logo from './logo/Logo'
+
 const Chapters = ({ chapters, changeSearch, changeId }) => {
     return (
         <>

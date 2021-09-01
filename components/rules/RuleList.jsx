@@ -5,10 +5,9 @@ const RuleList = ({ search, allRules, filter, id, injectHyperlinkRules }) => {
     return (
         <>
             <div className={styles.rules}>
-                <div style={{ fontSize: '30px' }}>
+                <div style={{ fontSize: '20px', display: 'flex', justifyContent: 'center' }}>
                     Rules
                 </div>
-                {search}
                 <br />
                 {/* This executes when chapters are clicked */}
                 {!filter && allRules && allRules.map((rule) => (
