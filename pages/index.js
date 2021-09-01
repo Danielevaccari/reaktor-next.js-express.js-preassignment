@@ -8,10 +8,21 @@ import Logo from '../components/navigation/logo/Logo'
 
 //Created by Daniele Johannes Vaccari
 
-export default function Home() {
+//Fetch .txt data at https://reaktor-next-js-express-js-preassignment.vercel.app/api/ruleData.
+export const getStaticProps = async () => {
+
+  //https://reaktor-next-js-express-js-preassignment.vercel.app/api/ruleData
+  const res = await fetch('https://newest-react-express.herokuapp.com/')
+  const data = await res.text()
+  return {
+    props: { txtData: data }
+  }
+}
+
+export default function Home({ txtData }) {
 
   //strMagic contains the .txt as string
-  const [strMagic, setStrMagic] = useState('')
+  const [strMagic, setStrMagic] = useState(txtData)
   //chapters contains the chapters from the .txt data
   const [chapters, setChapters] = useState('')
   //Bool for search. True if user has entered something in searchbox.
@@ -27,23 +38,9 @@ export default function Home() {
   //Boolean for pop up window. Open if true.
   const [open, setOpen] = useState(false)
 
-  //Fetch .txt data at https://reaktor-next-js-express-js-preassignment.vercel.app/api/ruleData.
-  const dataFetch = async () => {
-
-    //https://reaktor-next-js-express-js-preassignment.vercel.app/api/ruleData
-    const res = await fetch('https://newest-react-express.herokuapp.com/')
-    const data = await res.text()
-    initializeStrMagic(data)
-  }
-
   //Gets all rules from strMagic by using regular expressions.
   const setAllRulesArray = () => {
     setAllRules(strMagic.match(/^[0-9][0-9][0-9].[0-9][a-z]?.+\s?\s?(Example.*$)?\s?\s?(Example.*$)?\s?\s?(Example.*$)?\s?\s?(Example.*$)?/gm))
-  }
-
-  //Sets .txt data to strMagic.
-  const initializeStrMagic = (e) => {
-    setStrMagic(e)
   }
 
   //Gets the chapters and sets them to chapters. Slices the chapter section from .txt file and collects chapters using regex. Indexes of slicing are found by keywords around all chapters.
@@ -120,13 +117,6 @@ export default function Home() {
   const ruleHyperClose = () => {
     setOpen(false)
   }
-
-  //Iniatializing data as soon as page is opened
-  useEffect(() => {
-    if (!strMagic) {
-      dataFetch()
-    }
-  }, [strMagic])
 
   //Initializing chapters
   useEffect(() => {
