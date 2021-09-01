@@ -4,7 +4,6 @@ import styles from '../styles/Home.module.css'
 import { PopUpComp } from '../components/popUp/PopUpComp'
 import Chapters from '../components/navigation/Chapters'
 import RuleList from '../components/rules/RuleList'
-import Rule from '../components/rules/rule/Rule'
 
 //Created by Daniele Johannes Vaccari
 

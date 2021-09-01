@@ -1,20 +1,21 @@
 .popUpContainer {
-    height          : 80vh;
-    width           : 65vw;
-    outline         : none;
-    background-color: wheat;
-    display         : flex;
-    justify-content : center;
-    align-items     : center;
-  }
-  
-  .popUp {
-    height         : 100%;
-    width          : 100%;
-    overflow       : auto;
-    display        : flex;
-    justify-content: center;
-    align-items    : center;
-    font-size      : 0.5rem;
-    font-family    : 'Courier New', Courier, monospace;
-  }
+  height         : 80vh;
+  width          : 65vw;
+  outline        : none;
+  background     : rgba(255, 241, 241, 0.9);
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+  border-radius  : 10px;
+}
+
+.popUp {
+  height         : 100%;
+  width          : 100%;
+  overflow       : auto;
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+  font-size      : 0.5rem;
+  font-family    : 'Courier New', Courier, monospace;
+}
