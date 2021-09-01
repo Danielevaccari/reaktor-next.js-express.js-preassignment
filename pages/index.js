@@ -12,7 +12,7 @@ import Logo from '../components/navigation/logo/Logo'
 export const getStaticProps = async () => {
 
   //https://reaktor-next-js-express-js-preassignment.vercel.app/api/ruleData
-  const res = await fetch('https://newest-react-express.herokuapp.com/')
+  const res = await fetch('https://reaktor-next-js-express-js-preassignment.vercel.app/api/ruleData')
   const data = await res.text()
   return {
     props: { txtData: data }
