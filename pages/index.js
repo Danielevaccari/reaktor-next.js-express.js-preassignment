@@ -21,38 +21,20 @@ export const getStaticProps = async () => {
 
 export default function Home({ txtData }) {
 
-  //strMagic contains the .txt as string
-  const [strMagic, setStrMagic] = useState(txtData)
-  //chapters contains the chapters from the .txt data
-  const [chapters, setChapters] = useState('')
+  //Gets all rules from strMagic by using regular expressions.
+  const allRules = txtData.match(/^[0-9][0-9][0-9].[0-9][a-z]?.+\s?\s?(Example.*$)?\s?\s?(Example.*$)?\s?\s?(Example.*$)?\s?\s?(Example.*$)?/gm)
+  //Gets the chapters and sets them to chapters. Slices the chapter section from .txt file and collects chapters using regex. Indexes of slicing are found by keywords around all chapters.
+  const chapters = txtData.slice(txtData.indexOf('Contents'), txtData.indexOf('Credits')).match(/^[0-9][0-9][0-9]\. .+/gm)
+  //Hyperlink rule string. Pop up rule.
+  const [hyperRule, setHyperRule] = useState('')
   //Bool for search. True if user has entered something in searchbox.
   const [filter, setFilter] = useState(false)
-  //This contains all the rules. Rules are filtered with regex from strMagic.
-  const [allRules, setAllRules] = useState([])
   //Rule identifier. First 3 digits of a rule.
   const [id, setId] = useState('100')
   //Value of searchbox
   const [search, setSearch] = useState('')
-  //Hyperlink rule string. Pop up rule.
-  const [hyperRule, setHyperRule] = useState('')
   //Boolean for pop up window. Open if true.
   const [open, setOpen] = useState(false)
-
-  //Gets all rules from strMagic by using regular expressions.
-  const setAllRulesArray = () => {
-    setAllRules(strMagic.match(/^[0-9][0-9][0-9].[0-9][a-z]?.+\s?\s?(Example.*$)?\s?\s?(Example.*$)?\s?\s?(Example.*$)?\s?\s?(Example.*$)?/gm))
-  }
-
-  //Gets the chapters and sets them to chapters. Slices the chapter section from .txt file and collects chapters using regex. Indexes of slicing are found by keywords around all chapters.
-  const changeChapters = () => {
-    const chapterArray = strMagic.slice(strMagic.indexOf('Contents'), strMagic.indexOf('Credits')).toString()
-    setChapters(chapterArray.match(/^[0-9][0-9][0-9]\. .+/gm))
-  }
-
-  //Sets the id to match chapter number
-  const changeId = (prop) => {
-    setId(prop)
-  }
 
   //Input handler
   const changeSearch = (e) => {
@@ -107,30 +89,11 @@ export default function Home({ txtData }) {
     var ruleId = e.target.dataset.value
     //Regular expression to find a exact match for the rule
     var re = new RegExp(`^${ruleId}\.?.+\s?\s?(Example.*$)?`, 'gm')
-    const ans = strMagic.match(re)[0]
+    const ans = txtData.match(re)[0]
     //Setting values for the pop up
     setHyperRule(ans)
     setOpen(true)
   }
-
-  //Closes the pop up
-  const ruleHyperClose = () => {
-    setOpen(false)
-  }
-
-  //Initializing chapters
-  useEffect(() => {
-    if (!chapters) {
-      changeChapters()
-    }
-  }, [strMagic])
-
-  //Initializing rules
-  useEffect(() => {
-    if (strMagic) {
-      setAllRulesArray()
-    }
-  }, [strMagic])
 
   return (
     <>
@@ -141,12 +104,12 @@ export default function Home({ txtData }) {
         </title>
       </Head>
       {/* Pop up component */}
-      <PopUpComp open={open} ruleHyperClose={ruleHyperClose} hyperRule={hyperRule} />
+      <PopUpComp open={open} setOpen={setOpen} hyperRule={hyperRule} />
       {/* Rulebook content */}
       <div className={styles.walls}>
         <Logo />
         <div className={styles.container}>
-          <Chapters chapters={chapters} changeSearch={changeSearch} changeId={changeId} />
+          <Chapters chapters={chapters} changeSearch={changeSearch} setId={setId} search={search} setFilter={setFilter} />
           <RuleList search={search} allRules={allRules} filter={filter} id={id} injectHyperlinkRules={injectHyperlinkRules} />
         </div>
       </div>

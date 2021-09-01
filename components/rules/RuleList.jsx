@@ -11,11 +11,11 @@ const RuleList = ({ search, allRules, filter, id, injectHyperlinkRules }) => {
                 <br />
                 {/* This executes when chapters are clicked */}
                 {!filter && allRules && allRules.map((rule) => (
-                    rule.substring(0, 3) == id ? <Rule injectHyperlinkRules={injectHyperlinkRules} rule={rule} /> : ''
+                    rule.substring(0, 3) == id ? <Rule key={rule} injectHyperlinkRules={injectHyperlinkRules} rule={rule} /> : ''
                 ))}
                 {/* If user has entered text in the searcbox this will execute */}
                 {filter && allRules && allRules.map((rule) => (
-                    rule.includes(search) ? <Rule injectHyperlinkRules={injectHyperlinkRules} rule={rule} /> : ''
+                    rule.includes(search) ? <Rule key={rule} injectHyperlinkRules={injectHyperlinkRules} rule={rule} /> : ''
                 ))}
             </div>
         </>
