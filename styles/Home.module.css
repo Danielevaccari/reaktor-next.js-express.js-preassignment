@@ -10,7 +10,7 @@
   height     : 90vh;
   display    : flex;
   width      : 100%;
-  background : linear-gradient(to right top, rgb(182, 182, 255), rgb(255, 184, 255));
+  background : linear-gradient(to right top, rgb(182, 182, 255), rgb(251, 224, 255));
 }
 
 @media (min-width: 769px) {
