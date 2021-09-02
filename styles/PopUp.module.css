@@ -2,8 +2,8 @@
   height         : 80vh;
   width          : 65vw;
   outline        : none;
-  background     : rgba(255, 241, 241, 0.8);
-  backdrop-filter: blur(3px);
+  background     : linear-gradient(to right top, rgba(255, 241, 241, 0.65), rgba(255, 241, 241, 0.9));
+  backdrop-filter: blur(4px);
   display        : flex;
   justify-content: center;
   align-items    : center;
@@ -11,6 +11,11 @@
   padding-left   : 3%;
   padding-right  : 3%;
 }
+
+.popUpContainer:hover {
+  background: linear-gradient(to right top, rgba(255, 241, 241, 0.9), rgba(255, 241, 241, 0.65));
+}
+
 
 .popUp {
   height         : 100%;
