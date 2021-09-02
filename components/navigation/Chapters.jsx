@@ -1,11 +1,11 @@
 import styles from '../../styles/Chapters.module.css'
 import Searchbox from './searchbox/Searchbox'
 
-const Chapters = ({ chapters, changeSearch, setId, search, setFilter }) => {
+const Chapters = ({setSearch, chapters, setId, search, setFilter }) => {
     return (
         <>
             <div className={styles.left}><br />
-                <Searchbox changeSearch={changeSearch} search={search} setFilter={setFilter} />
+                <Searchbox setSearch={setSearch} search={search} setFilter={setFilter} />
                 <div className={styles.toc}>Table of contents</div>
                 <div className={styles.chapters}>
                     {/* Get chapters dynamically */}

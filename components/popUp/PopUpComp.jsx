@@ -11,7 +11,7 @@ export const PopUpComp = ({ open, setOpen, hyperRule }) => {
         <>
             <Modal
                 title='modal'
-                open={open ? true : false}
+                open={open}
                 onClose={() => setOpen(false)}
                 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >

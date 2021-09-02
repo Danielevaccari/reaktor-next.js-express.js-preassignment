@@ -1,6 +1,17 @@
 import styles from '../../../styles/Searchbox.module.css'
 
-const Searchbox = ({ changeSearch, search, setFilter }) => {
+const Searchbox = ({setSearch, search, setFilter }) => {
+
+    //Input handler
+    const changeSearch = (e) => {
+        setSearch(e.target.value)
+        setFilter(true)
+        //Searchbox needs to be empty if user doesnt want to filter rules by keywords.
+        if (!document.getElementById('searchbox').value) {
+            setFilter(false)
+        }
+    }
+
     return (
         <>
             <div className={styles.searchboxParent}>
