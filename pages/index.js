@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { PopUpComp } from '../components/popUp/PopUpComp'
+import PopUpComp from '../components/popUp/PopUpComp'
 import Chapters from '../components/navigation/Chapters'
 import RuleList from '../components/rules/RuleList'
 import Logo from '../components/navigation/logo/Logo'
@@ -34,49 +34,36 @@ export default function Home({ txtData }) {
   //Value of searchbox
   const [search, setSearch] = useState('')
   //Boolean for pop up window. Open if true.
-  const [open, setOpen] = useState(false)
+  const [openPopUp, setOpenPopUp] = useState(false)
 
   // If rule contains a rule this will replace it with a hyperlink to that rule. If rule does not contain other rules return the original rule
-  const injectHyperlinkRules = (str) => {
+  const InsertLinksToOtherRuleMentionsInRuleOrReturnRule = (str) => {
     var ruleContainingLinksToOtherRulesIfOtherRulesArePresent = []
     //Search the rule for mentions of other rules and return all rule numbers that are mentioned in an array to ruleIds
-    const ruleWithoutItsRuleNumber = str.substring(7, str.length)
-    const ruleNumbersInsideARuleInArray = ruleWithoutItsRuleNumber.match(/[0-9][0-9][0-9]\.?[0-9]?[0-9]?[0-9]?[a-z]?\.?/gm)
-
-    var rightSideOfRule = str
+    const ruleNumbersInsideARuleInArray = str.match(/[0-9][0-9][0-9]\.?[0-9]?[0-9]?[0-9]?[a-z]?\.?/gm)
 
     if (ruleNumbersInsideARuleInArray) {
-      for (var i = 0; i < ruleNumbersInsideARuleInArray.length; i++) {
+      //First contains the whole rule but if a rule is found inside a this will contain the rule after the ruleId
+      var rightSideOfRule = str
+      for (var i = 1; i < ruleNumbersInsideARuleInArray.length; i++) {
         //splits rule to left side of the tule number and right side of the rule number
         var stringsAroundExistingRuleNumberInRuleInArray = rightSideOfRule.split(ruleNumbersInsideARuleInArray[i])
         //Adds whole rule together with one rule hyperlink
         ruleContainingLinksToOtherRulesIfOtherRulesArePresent.push(stringsAroundExistingRuleNumberInRuleInArray[0])
         ruleContainingLinksToOtherRulesIfOtherRulesArePresent.push(
-          <span
-            key={stringsAroundExistingRuleNumberInRuleInArray[0]}
+          <span key={stringsAroundExistingRuleNumberInRuleInArray[0]}
             data-value={ruleNumbersInsideARuleInArray[i]}
-            onClick={ruleHyperOpen} style={{ color: 'blue' }}
-          >
+            onClick={ruleHyperOpen} style={{ color: 'blue' }}>
             {ruleNumbersInsideARuleInArray[i]}
-          </span>
-        )
-
-        //If contains 1 rule
-        if (ruleNumbersInsideARuleInArray.length == 1) {
-          ruleContainingLinksToOtherRulesIfOtherRulesArePresent.push(stringsAroundExistingRuleNumberInRuleInArray[1])
-          return (ruleContainingLinksToOtherRulesIfOtherRulesArePresent)
-        }
-        //If more than 1 rule
-        //Saves the string after first rule hyperlink to a temporary variable tempStr
+          </span>)
         rightSideOfRule = stringsAroundExistingRuleNumberInRuleInArray[1]
         //Returns rule when it has replaced all instances of rules to hyperlink rules in the rule
         if (i + 1 == ruleNumbersInsideARuleInArray.length) {
-          ruleContainingLinksToOtherRulesIfOtherRulesArePresent.push(stringsAroundExistingRuleNumberInRuleInArray[1])
+          ruleContainingLinksToOtherRulesIfOtherRulesArePresent.push(rightSideOfRule)
           return (ruleContainingLinksToOtherRulesIfOtherRulesArePresent)
         }
       }
     }
-
     return (
       str
     )
@@ -86,11 +73,10 @@ export default function Home({ txtData }) {
     //Gets the data-value attribute that represents the rule's id
     var ruleId = e.target.dataset.value
     //Regular expression to find a exact match for the rule
-    var re = new RegExp(`^${ruleId}\.?.+\s?\s?(Example.*$)?`, 'gm')
-    const ans = txtData.match(re)[0]
+    const ans = txtData.match(new RegExp(`^${ruleId}\.?.+\s?\s?(Example.*$)?`, 'gm'))[0]
     //Setting values for the pop up
     setHyperRule(ans)
-    setOpen(true)
+    setOpenPopUp(true)
   }
 
   return (
@@ -102,13 +88,13 @@ export default function Home({ txtData }) {
         </title>
       </Head>
       {/* Pop up component */}
-      <PopUpComp open={open} setOpen={setOpen} hyperRule={hyperRule} />
+      <PopUpComp openPopUp={openPopUp} setOpenPopUp={setOpenPopUp} hyperRule={hyperRule} />
       <div className={styles.walls}>
         <Logo />
         {/* Rulebook content */}
         <div className={styles.container}>
           <Chapters setSearch={setSearch} chapters={chapters} setId={setId} search={search} setFilter={setFilter} />
-          <RuleList search={search} allRules={allRules} filter={filter} id={id} injectHyperlinkRules={injectHyperlinkRules} />
+          <RuleList search={search} allRules={allRules} filter={filter} id={id} InsertLinksToOtherRuleMentionsInRuleOrReturnRule={InsertLinksToOtherRuleMentionsInRuleOrReturnRule} />
         </div>
       </div>
     </>

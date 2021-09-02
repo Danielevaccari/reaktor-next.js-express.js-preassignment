@@ -1,7 +1,7 @@
 import Rule from "./rule/Rule"
 import styles from '../../styles/RuleList.module.css'
 
-const RuleList = ({ search, allRules, filter, id, injectHyperlinkRules }) => {
+const RuleList = ({ search, allRules, filter, id, InsertLinksToOtherRuleMentionsInRuleOrReturnRule }) => {
     return (
         <>
             <div className={styles.rules}>
@@ -11,11 +11,11 @@ const RuleList = ({ search, allRules, filter, id, injectHyperlinkRules }) => {
                 <br />
                 {/* This executes when chapters are clicked */}
                 {!filter && allRules && allRules.map((rule) => (
-                    rule.substring(0, 3) == id ? <Rule key={rule} injectHyperlinkRules={injectHyperlinkRules} rule={rule} /> : ''
+                    rule.substring(0, 3) == id ? <Rule key={rule} InsertLinksToOtherRuleMentionsInRuleOrReturnRule={InsertLinksToOtherRuleMentionsInRuleOrReturnRule} rule={rule} /> : ''
                 ))}
                 {/* If user has entered text in the searcbox this will execute */}
                 {filter && allRules && allRules.map((rule) => (
-                    rule.includes(search) ? <Rule key={rule} injectHyperlinkRules={injectHyperlinkRules} rule={rule} /> : ''
+                    rule.includes(search) ? <Rule key={rule} InsertLinksToOtherRuleMentionsInRuleOrReturnRule={InsertLinksToOtherRuleMentionsInRuleOrReturnRule} rule={rule} /> : ''
                 ))}
             </div>
         </>

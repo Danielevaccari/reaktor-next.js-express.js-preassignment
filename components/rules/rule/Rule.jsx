@@ -1,9 +1,9 @@
 import styles from '../../../styles/Rule.module.css'
 
-const Rule = ({ injectHyperlinkRules, rule }) => {
+const Rule = ({ InsertLinksToOtherRuleMentionsInRuleOrReturnRule, rule }) => {
     return (
         <>
-            <div className={styles.rule} key={rule}>{injectHyperlinkRules(rule)}</div>
+            <div className={styles.rule} key={rule}>{InsertLinksToOtherRuleMentionsInRuleOrReturnRule(rule)}</div>
         </>
     )
 }
