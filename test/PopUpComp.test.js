@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/dom'
 import { render } from '@testing-library/react'
-import { PopUpComp } from '../components/PopUpComp'
+import PopUpComp from '../components/popUp/PopUpComp'
 
 
 describe('Tests for the pop up component', () =>
